@@ -1,5 +1,5 @@
 # Forum Chat 👥💬
-This is a little example of a forum chat, that refresh on real-team and supports multiple users. 
+This is a little example of a forum chat, that refresh on real-time and supports multiple users. 
 
 <!-- You can see the demo on --> 
 
