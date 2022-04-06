@@ -1,7 +1,7 @@
 # Forum Chat 👥💬
 This is a little example of a forum chat, that refresh on real-time and supports multiple users. 
 
-**NOTE:** Before you run the project you must execute the next command:
+**NOTE:** Before you run the project you must execute the command:
 ```
 npm install
 ```
