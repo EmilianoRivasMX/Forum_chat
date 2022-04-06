@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/socket.io/socket.io.js"></script>
+
+    <!-- include bootstap and jquery cdn -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Chat App</title>
+</head>
+<body>
+    <div class="container">
+        <br>
+        <div class="jumbotron">
+            <h1 class="display-4">Send Message</h1>
+            <br>
+            <input id="name" class="form-control" placeholder="Name">
+            <br>
+            <textarea id ="message" class="form-control" placeholder="Your Message Here"></textarea>
+            <br>
+            <button id="send" class="btn btn-success">Send</button>
+        </div>
+        <div id="messages" class="pt-5">
+        
+        </div>
+    </div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    var socket = io();
+    socket.on("message", addMessages) // When a message is posted, the server will update the meesages div
+
+    $(() => {
+    $("#send").click(()=>{
+       sendMessage({
+          name: $("#name").val(), 
+          message:$("#message").val()});
+        })
+      getMessages()
+    })
+    
+function addMessages(message){
+   $("#messages").append(`
+      <h4> ${message.name} </h4>
+      <p>  ${message.message} </p>`)
+   }
+   
+function getMessages(){
+  $.get('http://192.168.100.113:3000/messages', (data) => {
+   data.forEach(addMessages);
+   })
+ }
+ 
+function sendMessage(message){
+   $.post('http://192.168.100.113:3000/messages', message)
+ }
+</script>
+</body>
+</html>
