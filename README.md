@@ -3,7 +3,7 @@ This is a little example of a forum chat, that refresh on real-team and supports
 
 <!-- You can see the demo on --> 
 
-This project was build using the following technologies:
+This project was built using the following technologies:
 * Javascript
 * NodeJS
 * Socket.io
